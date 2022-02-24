@@ -142,6 +142,18 @@
 <p>本文書は、Jestを使ってテストを行うための入門ガイドです。
 Jestを使ってどうやってテストするのか？といった疑問に答えます。
 テストを行っていくための最初の一歩になればと思います。</p>
+<iframe
+  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/template?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&module=%2Fsum.test.js"
+  style="
+    width:100%;
+    height:500px;
+    border:0;
+    border-radius: 4px;
+    overflow:hidden;
+  "
+  title="template"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 <p>それでは、さっそく学んでいきましょう!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="jestとは"><a class="header" href="#jestとは">Jestとは</a></h1>
 <p>Jest公式サイト: <a href="https://jestjs.io/ja">https://jestjs.io/ja</a></p>
@@ -556,6 +568,18 @@ test(&quot;西暦年号が4で割り切れない年はうるう年でない&quot
 <li><code>toBe</code> … 与えた値との同一性 (<code>===</code>) を検証します</li>
 <li><code>toEqual</code> … オブジェクトまたは配列のすべてのプロパティの同一性を再帰的に検証します</li>
 </ul>
+<iframe
+  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/basic?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&module=%2FtoBe.test.js"
+  style="
+    width:100%;
+    height:500px;
+    border:0;
+    border-radius: 4px;
+    overflow:hidden;
+  "
+  title="basic"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 <h3 id="真偽値とそれに類する値の検証"><a class="header" href="#真偽値とそれに類する値の検証">真偽値とそれに類する値の検証</a></h3>
 <ul>
 <li><code>toBeNull</code> … null</li>
@@ -588,10 +612,49 @@ test(&quot;西暦年号が4で割り切れない年はうるう年でない&quot
 <p>より詳しい情報は <a href="https://jestjs.io/ja/docs/expect">Jest公式リファレンス</a> を参照してください。</p>
 <h2 id="promise"><a class="header" href="#promise">Promise</a></h2>
 <p>Jestは、<code>test</code> に渡す関数の前に <code>async</code> キーワードを記述するだけで、非同期テストを実行できます。</p>
+<iframe
+  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/promise?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&module=%2Fpromise.test.js"
+  style="
+    width:100%;
+    height:500px;
+    border:0;
+    border-radius: 4px;
+    overflow:hidden;
+  "
+  title="promise"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 <p>より詳しい情報は <a href="https://jestjs.io/ja/docs/asynchronous#asyncawait">Jest公式ドキュメント Async/Await</a> を参照してください。</p>
 <h2 id="beforeeach-と-aftereach"><a class="header" href="#beforeeach-と-aftereach">beforeEach と afterEach</a></h2>
 <p><code>beforeEach</code> と <code>afterEach</code> を使用することでテストの実行の前に繰り返し行う準備や、後片付けの処理を宣言できます。</p>
+<iframe
+  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/scope?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&module=%2Fscope.test.js"
+  style="
+    width:100%;
+    height:500px;
+    border:0;
+    border-radius: 4px;
+    overflow:hidden;
+  "
+  title="scope"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 <p>より詳しい情報は <a href="https://jestjs.io/ja/docs/setup-teardown">Jest公式ドキュメント セットアップと破棄</a> を参照してください。</p>
+<h2 id="モック"><a class="header" href="#モック">モック</a></h2>
+<p>モック関数を使用することでコード間の繋がりをテストできます。</p>
+<iframe
+  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/mock?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&module=%2Fmock.test.js"
+  style="
+    width:100%;
+    height:500px;
+    border:0;
+    border-radius: 4px;
+    overflow:hidden;
+  "
+  title="mock"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+<p>より詳しい情報は <a href="https://jestjs.io/ja/docs/mock-functions">Jest公式ドキュメント モック関数</a> を参照してください。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="質問提案問題の報告"><a class="header" href="#質問提案問題の報告">質問・提案・問題の報告</a></h1>
 <p>もし何か気になることがあれば、<a href="https://github.com/kou029w/jest-hands-on/issues/new">GitHub Issues</a> からお気軽にお寄せください。</p>
 
