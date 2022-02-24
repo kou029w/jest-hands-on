@@ -1,0 +1,629 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Jestではじめるテスト</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="basic.html"><strong aria-hidden="true">1.</strong> Jestではじめるテスト</a></li><li class="chapter-item expanded "><a href="about-jest.html"><strong aria-hidden="true">2.</strong> Jestとは</a></li><li class="chapter-item expanded "><a href="preparation.html"><strong aria-hidden="true">3.</strong> 事前準備</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">4.</strong> はじめてのテスト</a></li><li class="chapter-item expanded "><a href="basic-jest-api.html"><strong aria-hidden="true">5.</strong> 基本的な機能</a></li><li class="chapter-item expanded "><a href="esm.html"><strong aria-hidden="true">6.</strong> ECMAScriptモジュールのテスト ―― Babelの設定</a></li><li class="chapter-item expanded "><a href="practices.html"><strong aria-hidden="true">7.</strong> テストの実践 ――「うるう年」問題</a></li><li class="chapter-item expanded "><a href="test-writing-style.html"><strong aria-hidden="true">8.</strong> テストの作法</a></li><li class="chapter-item expanded "><a href="jest-api.html"><strong aria-hidden="true">9.</strong> Jestの機能</a></li><li class="chapter-item expanded "><a href="issues.html"><strong aria-hidden="true">10.</strong> 質問・提案・問題の報告</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Jestではじめるテスト</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/kou029w/jest-hands-on" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="jestではじめるテスト"><a class="header" href="#jestではじめるテスト">Jestではじめるテスト</a></h1>
+<p>本文書は、Jestを使ってテストを行うための入門ガイドです。
+Jestを使ってどうやってテストするのか？といった疑問に答えます。
+テストを行っていくための最初の一歩になればと思います。</p>
+<p>それでは、さっそく学んでいきましょう!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jestとは"><a class="header" href="#jestとは">Jestとは</a></h1>
+<p>Jest公式サイト: <a href="https://jestjs.io/ja">https://jestjs.io/ja</a></p>
+<p>Jestは、JavaScriptのテストを行うためのフレームワークです。
+Facebookによってメンテナンスを続けられており、2022年現在でもJavaScriptを使用する多くの開発者が使用している人気のツールです。</p>
+<blockquote>
+<p><img src="https://i.gyazo.com/c2b2c4a6111af6aa960f71bbadd4b5ef.png" alt="2021.stateofjs.com ランキング" /></p>
+<p>―― 画像の出典: <a href="https://2021.stateofjs.com/ja-JP/libraries/testing/">2021.stateofjs.com</a></p>
+</blockquote>
+<p>少ない設定で簡単にテストをはじめることができます。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="事前準備"><a class="header" href="#事前準備">事前準備</a></h1>
+<p>JestはNode.js上で実行します。
+まずはじめにNode.jsをインストールしましょう。</p>
+<h2 id="nodejsのインストール"><a class="header" href="#nodejsのインストール">Node.jsのインストール</a></h2>
+<p>いくつか方法がありますが、<a href="https://nodejs.org">Node.jsの公式サイト</a>を参照するのがよいでしょう。
+プロキシが存在する環境では、追加で下記の設定を行う必要があります。</p>
+<h3 id="npmのプロキシの設定"><a class="header" href="#npmのプロキシの設定">NPMのプロキシの設定</a></h3>
+<p>確認:</p>
+<p>プロキシが存在する環境では、ターミナルで <code>npm</code> コマンドを実行した際、次のようなエラーメッセージとともに失敗することがあります。</p>
+<pre><code class="language-console">$ npm install --save-dev jest
+npm ERR! code ENOTFOUND
+npm ERR! syscall getaddrinfo
+npm ERR! errno ENOTFOUND
+npm ERR! network request to https://registry.npmjs.org/jest failed, reason: getaddrinfo ENOTFOUND proxy.example.com
+npm ERR! network This is a problem related to network connectivity.
+npm ERR! network In most cases you are behind a proxy or have bad network settings.
+npm ERR! network
+npm ERR! network If you are behind a proxy, please make sure that the
+npm ERR! network 'proxy' config is set properly.  See: 'npm help config'
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/webdino/.npm/_logs/2022-01-12T07_20_33_146Z-debug-0.log
+</code></pre>
+<p>このようなエラーが出る場合は、環境変数 <code>HTTP_PROXY</code> と <code>HTTPS_PROXY</code> に適切なプロキシのURLを設定します。
+一方、このようなエラーが出ない場合は、下記の設定は不要です。必要に応じて行いましょう。</p>
+<p>設定項目:</p>
+<table><thead><tr><th>環境変数</th><th>値</th><th>例</th></tr></thead><tbody>
+<tr><td>HTTP_PROXY</td><td>httpプロキシのURLを入力</td><td>http://user:pass@proxy.example.com:8080</td></tr>
+<tr><td>HTTPS_PROXY</td><td>httpsプロキシのURLを入力</td><td>http://user:pass@proxy.example.com:8080</td></tr>
+</tbody></table>
+<p>これらはあくまで例です。実際には自分の環境の設定に合わせて変更する必要があります。</p>
+<p>Bash の例:</p>
+<pre><code class="language-bash">echo 'export HTTP_PROXY=http://user:pass@proxy.example.com:8080' &gt;&gt; ~/.bashrc
+echo 'export HTTPS_PROXY=http://user:pass@proxy.example.com:8080' &gt;&gt; ~/.bashrc
+. ~/.bashrc
+</code></pre>
+<p>Windows の例:</p>
+<p>「<a href="https://www.google.com/search?q=windows+%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0+%E8%A8%AD%E5%AE%9A&amp;oq=windows+%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E7%92%B0%E5%A2%83%E5%A4%89%E6%95%B0+%E8%A8%AD%E5%AE%9A">windows ユーザー環境変数 設定</a>」でGoogle検索。</p>
+<p>別の方法: 環境変数ではなく <code>npm config</code> を使う例:</p>
+<pre><code class="language-bash">npm config -g set proxy http://user:pass@proxy.example.com:8080
+npm config -g set https-proxy http://user:pass@proxy.example.com:8080
+</code></pre>
+<h2 id="ターミナルの使用"><a class="header" href="#ターミナルの使用">ターミナルの使用</a></h2>
+<p>コマンドを実行するにはターミナルを使用します。</p>
+<p>macOS の場合:</p>
+<p>[アプリケーション] &gt; [ユーティリティ] 内にある [ターミナル] を選択して起動します。</p>
+<p>Windows の場合:</p>
+<p>Microsoft Storeから、Windows Terminalをインストールします。
+インストール後、[スタートメニュー] &gt; [Windows Terminal] を選択して起動します。</p>
+<h2 id="nodejsの使用"><a class="header" href="#nodejsの使用">Node.jsの使用</a></h2>
+<p>確認:</p>
+<pre><code class="language-bash">node -v
+</code></pre>
+<p>ターミナルで実行します。
+インストールしたNode.jsのバージョンが表示されていれば、Node.jsを使用する準備は完了です。</p>
+<pre><code class="language-console">$ node -v
+v16.14.0
+</code></pre>
+<h2 id="プロジェクトの作成"><a class="header" href="#プロジェクトの作成">プロジェクトの作成</a></h2>
+<p>Node.jsを使ったプロジェクトは、基本的に <code>package.json</code> というファイルが配置されます。
+<code>package.json</code> には、次のようなプロジェクトに必要な付帯情報が含まれます。</p>
+<ul>
+<li>名前とバージョン</li>
+<li>外部モジュールや依存関係</li>
+<li>テストやビルドするためのコマンドなど</li>
+</ul>
+<p>Node.jsを使った開発をはじめるにあたって、最初にプロジェクトのためのディレクトリを作成します。</p>
+<pre><code class="language-bash">mkdir my-project
+cd my-project
+</code></pre>
+<p>そして、その中に <code>package.json</code> を配置します。</p>
+<pre><code class="language-bash">npm init -y
+</code></pre>
+<p>ひととおり準備ができました。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="はじめてのテスト"><a class="header" href="#はじめてのテスト">はじめてのテスト</a></h1>
+<p>ターミナルから <code>npm</code> コマンドでJestをインストールします。</p>
+<pre><code class="language-bash">npm i -D jest
+</code></pre>
+<p>または</p>
+<pre><code class="language-bash">npm install --save-dev jest
+</code></pre>
+<p>いずれかのコマンドを実行することでJestがインストールされます。
+ここでインストールしたJestは、このプロジェクトの開発用の依存関係として追加されます。
+つまり、これ以降このプロジェクトは <code>npm install</code> コマンドを実行することでJestを導入できるようになります。</p>
+<p>インストールしたJestは、<code>npx jest</code> コマンドを使用することで実行できます。</p>
+<pre><code class="language-bash">npx jest
+</code></pre>
+<p>しかし、まだテストが1件も存在しないのでこのコマンドは失敗します。</p>
+<pre><code class="language-console">$ npx jest
+No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In /home/kou029w/intro-to-software-testing
+  11 files checked.
+  testMatch: **/__tests__/**/*.[jt]s?(x), **/?(*.)+(spec|test).[tj]s?(x) - 0 matches
+  testPathIgnorePatterns: /node_modules/ - 11 matches
+  testRegex:  - 0 matches
+Pattern:  - 0 matches
+</code></pre>
+<p>実際にテストを作成し、実行していきましょう。</p>
+<p>次のファイルを作成します。</p>
+<pre><code class="language-js">// hello.test.js
+test(&quot;1と2の合計は3です&quot;, () =&gt; {
+  expect(1 + 2).toBe(3);
+});
+</code></pre>
+<p>この作成した <code>hello.test.js</code> は、<code>npx jest</code> コマンドを実行するときにテストとして実行されるようになります。</p>
+<pre><code class="language-console">$ npx jest
+ PASS  ./hello.test.js
+  ✓ 1と2の合計は3です (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.204 s
+Ran all test suites.
+</code></pre>
+<p>問題なく実行できましたか？
+気付いた人もいるかと思いますが、</p>
+<pre><code> PASS  ./hello.test.js
+</code></pre>
+<p>とあるのは、「テスト <code>hello.test.js</code> が実行され、そのテストは合格 (pass) しました」ということを意味します。</p>
+<p>このようにしてJestは簡単にテストを行うことができます。</p>
+<h2 id="はじめてのテストのコードの説明"><a class="header" href="#はじめてのテストのコードの説明">はじめてのテストのコードの説明</a></h2>
+<p>テストのコードについてより詳しく説明します。</p>
+<p>はじめてのテストのコード:</p>
+<pre><code class="language-js">test(&quot;1と2の合計は3です&quot;, () =&gt; {
+  expect(1 + 2).toBe(3);
+});
+</code></pre>
+<p>このコードは、「1と2の合計は3です」というテストを意味します。
+式 <code>1 + 2</code> が、 <code>3</code> と等しいことを検証するテストです。
+下記のJestの機能が使われています。</p>
+<p><code>test()</code> 関数</p>
+<p>テストを宣言するための関数です。</p>
+<ul>
+<li>第一引数には、このテストの説明を人間が読める形式で記述します</li>
+<li>第二引数には、テストの本体を記述します</li>
+</ul>
+<p><code>expect()</code> 関数</p>
+<p>引数に与えた値をテストします。</p>
+<p><code>.toBe()</code> メソッド</p>
+<p>与えた値との同一性を検証します。</p>
+<p>このコードは、Jestの基本的な機能を確認するための極めて単純なテストですが、テスト環境自体の検証を行うことでもあります。
+テスト環境の検証は、テストを行う上で最初に確認しておく重要なポイントです。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="基本的な機能"><a class="header" href="#基本的な機能">基本的な機能</a></h1>
+<p>Jestの機能について説明します。</p>
+<h2 id="テストファイルの検出"><a class="header" href="#テストファイルの検出">テストファイルの検出</a></h2>
+<p>Jestは、デフォルトで下記のファイルをテストファイルとして検出します。</p>
+<ul>
+<li><code>.test.js</code> ファイル</li>
+<li><code>.test.ts</code> ファイル</li>
+<li><code>.spec.js</code> ファイル</li>
+<li><code>.spec.ts</code> ファイル</li>
+<li><code>__tests__</code> ディレクトリ以下の <code>.js</code>、<code>.ts</code>、<code>.jsx</code>、<code>.tsx</code> ファイル</li>
+</ul>
+<h2 id="テストの自動監視"><a class="header" href="#テストの自動監視">テストの自動監視</a></h2>
+<p><code>--watch</code> オプションを指定することで、テストファイルの変更を自動で監視します。</p>
+<pre><code class="language-bash">npx jest --watch
+</code></pre>
+<p>終了するには、キーボードの <code>q</code> を押します。</p>
+<h2 id="プロジェクトでのテストコマンドの設定"><a class="header" href="#プロジェクトでのテストコマンドの設定">プロジェクトでのテストコマンドの設定</a></h2>
+<p>この設定を行うと、<code>npm test</code> コマンドでJestを実行できるようになります。</p>
+<pre><code class="language-bash">npm set-script test jest
+</code></pre>
+<p>実行すると、<code>package.json</code> には下記のような設定が追加されます。</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;jest&quot;
+  }
+}
+</code></pre>
+<p>NPMコマンドでのテストの実行:</p>
+<pre><code class="language-bash">npm test
+</code></pre>
+<p><code>npx jest</code> コマンドの実行と同様のテスト結果が得られます。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ecmascriptモジュールのテスト--babelの設定"><a class="header" href="#ecmascriptモジュールのテスト--babelの設定">ECMAScriptモジュールのテスト ―― Babelの設定</a></h1>
+<p>ECMAScriptモジュール (ESM) とは、JavaScriptをモジュールとして再利用できるようにするための仕組みです。</p>
+<p>Node.js標準でESMを取り扱えるようにするためには <code>package.json</code> ファイルに <code>&quot;type&quot;: &quot;module&quot;</code> プロパティを加えます。</p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;module&quot;
+}
+</code></pre>
+<p>このように書き加えると、プロジェクトの <code>.js</code> ファイルはESMとして取り扱われます。</p>
+<p>一方、Jestに関しては、2022年2月現在、まだNode.js標準のESMをサポートしていません。
+そのため、JestでESMをテストするには、さらにJavaScriptのコードを変換するための設定を行う必要があります。</p>
+<p>ESMのJavaScriptのコードを変換するには、たとえば、下記の方法があります。</p>
+<ul>
+<li><code>babel-jest</code> … Babelを使用して変換 (Jestのデフォルト)</li>
+<li><code>ts-jest</code> … tscを使用して変換</li>
+<li><code>esbuild-jest</code> … esbuildを使用して変換</li>
+<li><code>@swc/jest</code> … swcを使用して変換</li>
+</ul>
+<p>ここでは、Babelを使用して変換する方法を説明します。</p>
+<p>まず、<code>@babel/preset-env</code> を <code>npm</code> コマンドによってインストールし、Babelの設定を行います。</p>
+<pre><code class="language-bash">npm i -D @babel/preset-env
+</code></pre>
+<p>Babelには、プリセットと呼ばれる前もって調整済みの設定を行うためのパッケージがあります。
+<code>@babel/preset-env</code> は、Babelが公式で提供する一般的なJavaScriptの変換を行うためのプリセットです。</p>
+<p><code>babel.config.json</code> を作成し、下記の設定を書き加えます。</p>
+<pre><code class="language-json">{
+  &quot;presets&quot;: [&quot;@babel/preset-env&quot;],
+  &quot;targets&quot;: &quot;current node&quot;
+}
+</code></pre>
+<p>これは「現在実行しているNode.jsの向けの変換を行う」という意味です。
+Babelを使用するプロジェクトは、<code>babel.config.json</code> というファイルなどによって設定を行います。</p>
+<p>これで、JestでESMをテストすることができるようになりました。
+それではさっそく、ESMのテストを作成してみましょう。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="テストの実践-うるう年問題"><a class="header" href="#テストの実践-うるう年問題">テストの実践 ――「うるう年」問題</a></h1>
+<p>ここでは「うるう年」を判定するESMを作成します。
+「うるう年」の判定は、通常広く使われている <code>date-fns</code> などのNPMパッケージを使用することが多いですが、ここではテストを学ぶためにあえて自分で実装します。
+設計して、テストを書き、コードを書くという一連のステップでより実践的なテストとの付き合い方を学びましょう。</p>
+<h2 id="目標の決定"><a class="header" href="#目標の決定">目標の決定</a></h2>
+<p>まず「何を作るか」明らかにしましょう。
+何を作るか曖昧なまま、ただ無為にソフトウェア開発を進めるとムダを生む恐れがあります。
+ムダを生まないためにできるだけ「何を作るか」を明確にしておきましょう。</p>
+<p>「うるう年」を判定するということは、「西暦年号がうるう年ならば true を返し、そうでなければ false を返す関数」ということと決めます。</p>
+<p>「うるう年」とは何であるかは、ここでは日本の法令を参考にして決めます。
+日本の法令上の取り扱いは、明治時代に制定された「閏年ニ関スル件」によって決められています。</p>
+<blockquote>
+<p>神武天皇即位紀元年数ノ四ヲ以テ整除シ得ヘキ年ヲ閏年トス但シ紀元年数ヨリ六百六十ヲ減シテ百ヲ以テ整除シ得ヘキモノノ中更ニ四ヲ以テ商ヲ整除シ得サル年ハ平年トス</p>
+<p>―― <a href="https://elaws.e-gov.go.jp/document?lawid=131IO0000000090">https://elaws.e-gov.go.jp/document?lawid=131IO0000000090</a></p>
+</blockquote>
+<p>「神武天皇即位紀元年数」は、通常の西暦年号でいう紀元前660年を意味します。したがって「紀元年数ヨリ六百六十ヲ減シテ」とあるのは通常の西暦年号を意味します。
+端的に言うと「グレゴリオ暦法に基づいています」ということを意味します。
+このままだと大変読みにくいですね。
+書き換えると下記のようになります。</p>
+<blockquote>
+<p>西暦年号が4で割り切れる年はうるう年。ただし、西暦年号が100で割り切れる年のうち、100で割った商が4で割り切れない年はうるう年ではない。</p>
+</blockquote>
+<p>これを「うるう年」とします。まとめるとこうなります。</p>
+<ul>
+<li>西暦年号が4で割り切れる年はうるう年
+<ul>
+<li>たとえば、西暦2024年、2028年、2032年は4で割り切れるので、うるう年です。</li>
+</ul>
+</li>
+<li>西暦年号が4で割り切れない年はうるう年でない
+<ul>
+<li>たとえば、西暦2021年、2022年、2023年は4で割り切れないので、うるう年ではありません。</li>
+</ul>
+</li>
+<li>ただし、西暦年号が100で割り切れる年はうるう年でない
+<ul>
+<li>たとえば、西暦2100年、2200年、2300年は100で割り切れるので、うるう年ではありません。</li>
+</ul>
+</li>
+<li>ただし、西暦年号が400で割り切れる年はうるう年
+<ul>
+<li>たとえば、西暦2000年、2400年、2800年は400で割り切れるので、うるう年です。</li>
+</ul>
+</li>
+</ul>
+<p>これで「何を作るか」ということが明らかになりました。
+それでは、順番にテストとコードを書いていきましょう。</p>
+<h2 id="西暦年号が4で割り切れる年はうるう年"><a class="header" href="#西暦年号が4で割り切れる年はうるう年">「西暦年号が4で割り切れる年はうるう年」</a></h2>
+<p>ファイル <code>isLeapYear.test.js</code> を作成します。
+「何を作るか」ということを忘れないようにコメントに転載します。</p>
+<pre><code class="language-js">// isLeapYear.test.js
+/** TODO:
+西暦年号が4で割り切れる年はうるう年
+  たとえば、西暦2024年、2028年、2032年は4で割り切れるので、うるう年です。
+西暦年号が4で割り切れない年はうるう年でない
+  たとえば、西暦2021年、2022年、2023年は4で割り切れないので、うるう年ではありません。
+ただし、西暦年号が100で割り切れる年はうるう年でない
+  たとえば、西暦2100年、2200年、2300年は100で割り切れるので、うるう年ではありません。
+ただし、西暦年号が400で割り切れる年はうるう年
+  たとえば、西暦2000年、2400年、2800年は400で割り切れるので、うるう年です。
+*/
+</code></pre>
+<p>うるう年であることを判定するので <code>isLeapYear</code> という名前に決めました。
+この名前のモジュールと関数を作成することに決めます。</p>
+<p>テストを書いていきましょう。</p>
+<pre><code class="language-js">// isLeapYear.test.js
+test(&quot;西暦年号が4で割り切れる年はうるう年&quot;, () =&gt; {
+  expect(isLeapYear(2024)).toBe(true);
+});
+</code></pre>
+<p>これをテストし、失敗することを確認します。
+この失敗は、テスト環境自体の検証を行うことでもあります。</p>
+<p>コマンド:</p>
+<pre><code class="language-bash">npm test
+</code></pre>
+<p>テスト結果:</p>
+<pre><code class="language-console"> FAIL  ./isLeapYear.test.js
+  ✕ 西暦年号が4で割り切れる年はうるう年 (1 ms)
+</code></pre>
+<p>失敗しますね。
+この失敗によって、次の2点を実証できました。</p>
+<ul>
+<li>目標の「西暦年号が4で割り切れる年はうるう年」というテストが実行されること</li>
+<li>未実装のテストが意図せず合格しない (fail) ということ</li>
+</ul>
+<p>テスト環境の検証は、テストを行う上での重要なポイントです。</p>
+<p>それでは、関数を実装していきましょう。
+最初からすべての実装を書こうとせず、小さい変更のみで済ませるのがポイントです。</p>
+<pre><code class="language-js">// isLeapYear.js
+function isLeapYear(year) {
+  return year % 4 === 0;
+}
+
+export default isLeapYear;
+</code></pre>
+<p>ファイルを作成したら、テスト側でも <code>import</code> 文によって実装した関数を読み込みます。</p>
+<pre><code class="language-js">// isLeapYear.test.js
+import isLeapYear from &quot;./isLeapYear&quot;;
+
+test(&quot;西暦年号が4で割り切れる年はうるう年&quot;, () =&gt; {
+  expect(isLeapYear(2024)).toBe(true);
+});
+</code></pre>
+<p>テストを実行します。</p>
+<p>テスト結果:</p>
+<pre><code class="language-console"> PASS  ./isLeapYear.test.js
+  ✓ 西暦年号が4で割り切れる年はうるう年 (1 ms)
+</code></pre>
+<p>これでテストは合格しました。
+念の為、西暦2024年のケースだけでなくほかのケースもテストしてみましょう。</p>
+<p>「西暦年号が4で割り切れる年はうるう年」という目標を達成したと判断したら、コメントからは消しておきます。</p>
+<pre><code class="language-js">// isLeapYear.test.js
+import isLeapYear from &quot;./isLeapYear&quot;;
+
+test(&quot;西暦年号が4で割り切れる年はうるう年&quot;, () =&gt; {
+  expect(isLeapYear(2024)).toBe(true);
+  expect(isLeapYear(2028)).toBe(true);
+  expect(isLeapYear(2032)).toBe(true);
+});
+
+/** TODO:
+西暦年号が4で割り切れない年はうるう年でない
+  たとえば、西暦2021年、2022年、2023年は4で割り切れないので、うるう年ではありません。
+ただし、西暦年号が100で割り切れる年はうるう年でない
+  たとえば、西暦2100年、2200年、2300年は100で割り切れるので、うるう年ではありません。
+ただし、西暦年号が400で割り切れる年はうるう年
+  たとえば、西暦2000年、2400年、2800年は400で割り切れるので、うるう年です。
+*/
+</code></pre>
+<p>次の目標「西暦年号が4で割り切れない年はうるう年でない」に進めていきます。</p>
+<p>テストを書き、実行します。</p>
+<p>必要に応じて実装を修正します。</p>
+<p>これらのテストも問題なく合格するようになれば、「西暦年号が4で割り切れない年はうるう年でない」という目標も達成したと判断して、コメントから消しておきます。</p>
+<pre><code class="language-js">// isLeapYear.test.js
+import isLeapYear from &quot;./isLeapYear&quot;;
+
+test(&quot;西暦年号が4で割り切れる年はうるう年&quot;, () =&gt; {
+  expect(isLeapYear(2024)).toBe(true);
+  expect(isLeapYear(2028)).toBe(true);
+  expect(isLeapYear(2032)).toBe(true);
+});
+
+test(&quot;西暦年号が4で割り切れない年はうるう年でない&quot;, () =&gt; {
+  expect(isLeapYear(2021)).toBe(false);
+  expect(isLeapYear(2022)).toBe(false);
+  expect(isLeapYear(2023)).toBe(false);
+});
+
+/** TODO:
+ただし、西暦年号が100で割り切れる年はうるう年でない
+  たとえば、西暦2100年、2200年、2300年は100で割り切れるので、うるう年ではありません。
+ただし、西暦年号が400で割り切れる年はうるう年
+  たとえば、西暦2000年、2400年、2800年は400で割り切れるので、うるう年です。
+*/
+</code></pre>
+<h2 id="続きの課題"><a class="header" href="#続きの課題">続きの課題</a></h2>
+<p>残りの目標に関しても同様に進めていきましょう。</p>
+<ul>
+<li>ただし、西暦年号が100で割り切れる年はうるう年でない
+<ul>
+<li>たとえば、西暦2100年、2200年、2300年は100で割り切れるので、うるう年ではありません。</li>
+</ul>
+</li>
+<li>ただし、西暦年号が400で割り切れる年はうるう年
+<ul>
+<li>たとえば、西暦2000年、2400年、2800年は400で割り切れるので、うるう年です。</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="テストの作法"><a class="header" href="#テストの作法">テストの作法</a></h1>
+<p>テストを書くときの代表的な作法を紹介します。</p>
+<h2 id="arrangeactassert-aaa-パターン"><a class="header" href="#arrangeactassert-aaa-パターン">Arrange・Act・Assert (AAA) パターン</a></h2>
+<p>テストを書くときの作法の1つです。
+準備 (Arrange)・実行 (Act)・検証 (Assert) というプロセスで分けて書きます。
+準備・実行・検証をそれぞれ分けて書いておくことで比較的読みやすいテストを書くことができます。</p>
+<p>例:</p>
+<pre><code class="language-js">test(&quot;正しくJSONをパースできる&quot;, () =&gt; {
+  // 準備
+  const json = `{&quot;name&quot;: &quot;太郎&quot;, &quot;age&quot;: 20}`;
+
+  // 実行
+  const parsed = JSON.parse(json);
+
+  // 検証
+  expect(parsed).toEqual({ name: &quot;太郎&quot;, age: 20 });
+});
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jestの機能"><a class="header" href="#jestの機能">Jestの機能</a></h1>
+<p>Jestの代表的な機能を紹介します。</p>
+<h2 id="matcher"><a class="header" href="#matcher">Matcher</a></h2>
+<p>マッチャー (matcher) とは、与えた値を検証するためのメソッドです。</p>
+<h3 id="同一性の検証"><a class="header" href="#同一性の検証">同一性の検証</a></h3>
+<ul>
+<li><code>toBe</code> … 与えた値との同一性 (<code>===</code>) を検証します</li>
+<li><code>toEqual</code> … オブジェクトまたは配列のすべてのプロパティの同一性を再帰的に検証します</li>
+</ul>
+<h3 id="真偽値とそれに類する値の検証"><a class="header" href="#真偽値とそれに類する値の検証">真偽値とそれに類する値の検証</a></h3>
+<ul>
+<li><code>toBeNull</code> … null</li>
+<li><code>toBeUndefined</code> … undefined</li>
+<li><code>toBeDefined</code> … undefined でない (つまり <code>not.toBeUndefined</code> と等価)</li>
+<li><code>toBeTruthy</code> … if ステートメントが真であるとみなすもの</li>
+<li><code>toBeFalsy</code> … if ステートメントが偽であるとみなすもの</li>
+</ul>
+<h3 id="数値"><a class="header" href="#数値">数値</a></h3>
+<ul>
+<li><code>toBeGreaterThan</code> … &gt;</li>
+<li><code>toBeGreaterThanOrEqual</code> … &gt;=</li>
+<li><code>toBeLessThan</code> … &lt;</li>
+<li><code>toBeLessThanOrEqual</code> … &lt;=</li>
+<li><code>toBeCloseTo</code> … 浮動小数点数の丸め誤差を考慮した同一性</li>
+</ul>
+<h3 id="文字列"><a class="header" href="#文字列">文字列</a></h3>
+<ul>
+<li><code>toMatch</code> … 正規表現のパターン</li>
+</ul>
+<h3 id="配列と反復可能なオブジェクト"><a class="header" href="#配列と反復可能なオブジェクト">配列と反復可能なオブジェクト</a></h3>
+<ul>
+<li><code>toContain</code> … 配列や反復可能なオブジェクトに特定のアイテムが含まれているかを検証します</li>
+</ul>
+<h3 id="例外"><a class="header" href="#例外">例外</a></h3>
+<ul>
+<li><code>toThrow</code> … 例外を発報するかどうかを検証します</li>
+</ul>
+<h3 id="その他"><a class="header" href="#その他">その他</a></h3>
+<p>より詳しい情報は <a href="https://jestjs.io/ja/docs/expect">Jest公式リファレンス</a> を参照してください。</p>
+<h2 id="promise"><a class="header" href="#promise">Promise</a></h2>
+<p>Jestは、<code>test</code> に渡す関数の前に <code>async</code> キーワードを記述するだけで、非同期テストを実行できます。</p>
+<p>より詳しい情報は <a href="https://jestjs.io/ja/docs/asynchronous#asyncawait">Jest公式ドキュメント Async/Await</a> を参照してください。</p>
+<h2 id="beforeeach-と-aftereach"><a class="header" href="#beforeeach-と-aftereach">beforeEach と afterEach</a></h2>
+<p><code>beforeEach</code> と <code>afterEach</code> を使用することでテストの実行の前に繰り返し行う準備や、後片付けの処理を宣言できます。</p>
+<p>より詳しい情報は <a href="https://jestjs.io/ja/docs/setup-teardown">Jest公式ドキュメント セットアップと破棄</a> を参照してください。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="質問提案問題の報告"><a class="header" href="#質問提案問題の報告">質問・提案・問題の報告</a></h1>
+<p>もし何か気になることがあれば、<a href="https://github.com/kou029w/intro-to-software-testing/issues/new">GitHub Issues</a> からお気軽にお寄せください。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>
