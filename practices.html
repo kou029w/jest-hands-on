@@ -212,8 +212,11 @@ test(&quot;西暦年号が4で割り切れる年はうるう年&quot;, () =&gt; 
 </code></pre>
 <p>これをテストし、失敗することを確認します。
 この失敗は、テスト環境自体の検証を行うことでもあります。</p>
-<p>コマンド:</p>
+<p>NPMコマンドでのテストの実行:</p>
 <pre><code class="language-bash">npm test
+</code></pre>
+<p>テストの自動監視:</p>
+<pre><code class="language-bash">npx jest --watchAll
 </code></pre>
 <p>テスト結果:</p>
 <pre><code class="language-console"> FAIL  ./isLeapYear.test.js
