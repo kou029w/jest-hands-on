@@ -329,9 +329,7 @@ Ran all test suites.
 <p>終了するには、キーボードの <code>q</code> を押します。</p>
 <h2 id="プロジェクトでのテストコマンドの設定"><a class="header" href="#プロジェクトでのテストコマンドの設定">プロジェクトでのテストコマンドの設定</a></h2>
 <p>この設定を行うと、<code>npm test</code> コマンドでJestを実行できるようになります。</p>
-<pre><code class="language-bash">npm set-script test jest
-</code></pre>
-<p>実行すると、<code>package.json</code> には下記のような設定が追加されます。</p>
+<p><code>package.json</code> の <code>scripts</code> プロパティの中を下記のように変更します。</p>
 <pre><code class="language-json">{
   &quot;scripts&quot;: {
     &quot;test&quot;: &quot;jest&quot;
