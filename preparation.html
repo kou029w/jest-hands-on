@@ -172,10 +172,11 @@ npm ERR!     /home/webdino/.npm/_logs/2022-01-12T07_20_33_146Z-debug-0.log
 <p>このようなエラーが出る場合は、環境変数 <code>HTTP_PROXY</code> と <code>HTTPS_PROXY</code> に適切なプロキシのURLを設定します。
 一方、このようなエラーが出ない場合は、下記の設定は不要です。必要に応じて行いましょう。</p>
 <p>設定項目:</p>
-<table><thead><tr><th>環境変数</th><th>値</th><th>例</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>環境変数</th><th>値</th><th>例</th></tr></thead><tbody>
 <tr><td>HTTP_PROXY</td><td>httpプロキシのURLを入力</td><td>http://user:pass@proxy.example.com:8080</td></tr>
 <tr><td>HTTPS_PROXY</td><td>httpsプロキシのURLを入力</td><td>http://user:pass@proxy.example.com:8080</td></tr>
 </tbody></table>
+</div>
 <p>これらはあくまで例です。実際には自分の環境の設定に合わせて変更する必要があります。</p>
 <p>Bash の例:</p>
 <pre><code class="language-bash">echo 'export HTTP_PROXY=http://user:pass@proxy.example.com:8080' &gt;&gt; ~/.bashrc
