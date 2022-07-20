@@ -143,16 +143,15 @@
 Jestを使ってどうやってテストするのか？といった疑問に答えます。
 テストを行っていくための最初の一歩になればと思います。</p>
 <iframe
-  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/template?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&module=%2Fsum.test.js"
+  src="https://stackblitz.com/github/kou029w/jest-hands-on/tree/main/templates/template?embed=1&hideExplorer=1&view=editor&terminal=test&file=sum.test.js"
   style="
     width: 100%;
-    height: 500px;
+    height: 640px;
     border: 0;
     border-radius: 4px;
     overflow: hidden;
   "
   title="template"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 <p>それでは、さっそく学んでいきましょう!</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="jestとは"><a class="header" href="#jestとは">Jestとは</a></h1>
@@ -350,7 +349,7 @@ test(&quot;1と2の合計は3です&quot;, () =&gt; {
 }
 </code></pre>
 <p>このように書き加えると、プロジェクトの <code>.js</code> ファイルはESMとして取り扱われます。</p>
-<p>一方、Jestに関しては、2022年2月現在、まだNode.js標準のESMをサポートしていません。
+<p>一方、Jestに関しては、2022年7月現在、Node.js標準のESMをサポートしていません。
 そのため、JestでESMをテストするには、さらにJavaScriptのコードを変換するための設定を行う必要があります。</p>
 <p>ESMのJavaScriptのコードを変換するには、たとえば、下記の方法があります。</p>
 <ul>
@@ -558,16 +557,15 @@ test(&quot;西暦年号が4で割り切れない年はうるう年でない&quot
 <li><code>not</code> … 検証の結果を反転させます</li>
 </ul>
 <iframe
-  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/basic?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&module=%2FtoBe.test.js"
+  src="https://stackblitz.com/github/kou029w/jest-hands-on/tree/main/templates/basic?embed=1&hideExplorer=1&view=editor&terminal=test&file=toBe.test.js"
   style="
     width: 100%;
-    height: 500px;
+    height: 640px;
     border: 0;
     border-radius: 4px;
     overflow: hidden;
   "
   title="basic"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 <h3 id="真偽値とそれに類する値の検証"><a class="header" href="#真偽値とそれに類する値の検証">真偽値とそれに類する値の検証</a></h3>
 <ul>
@@ -602,46 +600,43 @@ test(&quot;西暦年号が4で割り切れない年はうるう年でない&quot
 <h2 id="promise"><a class="header" href="#promise">Promise</a></h2>
 <p>Jestは、<code>test</code> に渡す関数の前に <code>async</code> キーワードを記述するだけで、非同期テストを実行できます。</p>
 <iframe
-  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/promise?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&module=%2Fpromise.test.js"
+  src="https://stackblitz.com/github/kou029w/jest-hands-on/tree/main/templates/promise?ctl=1&embed=1&hideExplorer=1&view=editor&terminal=test&file=promise.test.js"
   style="
     width: 100%;
-    height: 500px;
+    height: 640px;
     border: 0;
     border-radius: 4px;
     overflow: hidden;
   "
   title="promise"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 <p>より詳しい情報は <a href="https://jestjs.io/ja/docs/asynchronous#asyncawait">Jest公式ドキュメント Async/Await</a> を参照してください。</p>
 <h2 id="beforeeach-と-aftereach"><a class="header" href="#beforeeach-と-aftereach">beforeEach と afterEach</a></h2>
 <p><code>beforeEach</code> と <code>afterEach</code> を使用することでテストの実行の前に繰り返し行う準備や、後片付けの処理を宣言できます。</p>
 <iframe
-  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/scope?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&expanddevtools=1&&module=%2Fscope.test.js"
+  src="https://stackblitz.com/github/kou029w/jest-hands-on/tree/main/templates/scope?ctl=1&embed=1&hideExplorer=1&view=editor&terminal=test&expanddevtools=1&&file=scope.test.js"
   style="
     width: 100%;
-    height: 500px;
+    height: 640px;
     border: 0;
     border-radius: 4px;
     overflow: hidden;
   "
   title="scope"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 <p>より詳しい情報は <a href="https://jestjs.io/ja/docs/setup-teardown">Jest公式ドキュメント セットアップと破棄</a> を参照してください。</p>
 <h2 id="モック"><a class="header" href="#モック">モック</a></h2>
 <p>モック関数を使用することでコード間の繋がりをテストできます。</p>
 <iframe
-  src="https://codesandbox.io/embed/github/kou029w/jest-hands-on/tree/main/templates/mock?codemirror=1&hidenavigation=1&previewwindow=tests&view=split&module=%2Fmock.test.js"
+  src="https://stackblitz.com/github/kou029w/jest-hands-on/tree/main/templates/mock?ctl=1&embed=1&hideExplorer=1&view=editor&terminal=test&file=mock.test.js"
   style="
     width: 100%;
-    height: 500px;
+    height: 640px;
     border: 0;
     border-radius: 4px;
     overflow: hidden;
   "
   title="mock"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 <p>より詳しい情報は <a href="https://jestjs.io/ja/docs/mock-functions">Jest公式ドキュメント モック関数</a> を参照してください。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="テストの作法"><a class="header" href="#テストの作法">テストの作法</a></h1>
