@@ -1,9 +1,10 @@
 [book]
+authors = ["Kohei Watanabe"]
 language = "ja"
 title = "Jestではじめるテスト"
-authors = ["Kohei Watanabe"]
 
 [output.html]
-site-url = "/jest-hands-on/"
-git-repository-url = "https://github.com/kou029w/jest-hands-on"
+additional-js = ["external-links.js", "regexp-search.js"]
 edit-url-template = "https://github.com/kou029w/jest-hands-on/edit/main/{path}"
+git-repository-url = "https://github.com/kou029w/jest-hands-on"
+site-url = "/jest-hands-on/"
