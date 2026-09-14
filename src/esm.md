@@ -24,10 +24,10 @@ ESMのJavaScriptのコードを変換するには、たとえば、下記の方�
 
 ここでは、Babelを使用して変換する方法を説明します。
 
-まず、`@babel/preset-env` を `npm` コマンドによってインストールし、Babelの設定を行います。
+まず、`@babel/core` と `@babel/preset-env` を `npm` コマンドによってインストールし、Babelの設定を行います。
 
 ```bash
-npm i -D @babel/preset-env
+npm i -D @babel/core @babel/preset-env
 ```
 
 Babelには、調整済みの設定を利用するためのプリセットと呼ばれるパッケージがあります。
