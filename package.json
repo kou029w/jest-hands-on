@@ -16,6 +16,6 @@
     "@babel/core": "8.0.5",
     "@babel/preset-env": "8.0.5",
     "jest": "30.5.1",
-    "prettier": "3.9.6"
+    "prettier": "3.9.7"
   }
 }
