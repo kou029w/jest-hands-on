@@ -13,8 +13,8 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@babel/core": "8.0.5",
-    "@babel/preset-env": "8.0.5",
+    "@babel/core": "8.0.6",
+    "@babel/preset-env": "8.0.6",
     "jest": "30.5.1",
     "prettier": "3.9.8"
   }
