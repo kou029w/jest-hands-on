@@ -9,7 +9,7 @@
     "watch": "jest --watchAll"
   },
   "devDependencies": {
-    "@babel/core": "8.0.7",
+    "@babel/core": "8.0.9",
     "@babel/preset-env": "8.0.7",
     "jest": "30.5.2"
   }
